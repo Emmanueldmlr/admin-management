@@ -23,12 +23,22 @@ namespace AdminSystem.Database
             return students;
         }
 
-        public Student GetStudentById(int studentId)
+        public Student GetStudentByCode(int studentId)
         {
             using var context = new DataContext();
 
             Student retrievedStudent = context.Students
                           .FirstOrDefault(p => p.IdentificationNumber == studentId);
+
+            return retrievedStudent;
+        }
+
+        public Student GetStudentById(int id)
+        {
+            using var context = new DataContext();
+
+            Student retrievedStudent = context.Students
+                          .FirstOrDefault(p => p.Id == id);
 
             return retrievedStudent;
         }

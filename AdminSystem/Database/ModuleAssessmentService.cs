@@ -42,6 +42,16 @@ namespace AdminSystem.Database
 
             return moduleAssessments;
         }
+
+        public ModuleAssessment GetModuleAssessmentsById(int id)
+        {
+            using var context = new DataContext();
+
+            ModuleAssessment retrievedRecord = context.ModuleAssessments
+                          .FirstOrDefault(p => p.Id == id); ;
+
+            return retrievedRecord;
+        }
     }
 }
 

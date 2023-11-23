@@ -7,7 +7,7 @@ using Module = AdminSystem.Models.Module;
 using System.Drawing;
 using System.Xml.Linq;
 
-namespace AdminSystem.Actions
+namespace AdminSystem.Logic
 {
 	public class ProgramModuleActions
 	{

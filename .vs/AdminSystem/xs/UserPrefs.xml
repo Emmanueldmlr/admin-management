@@ -1,38 +1,33 @@
-﻿<Properties StartupConfiguration="{5320D63F-B581-4F0C-8C96-A871AD5DC1AB}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="AdminSystem/Database/AssessmentService.cs">
+﻿<Properties StartupConfiguration="{5320D63F-B581-4F0C-8C96-A871AD5DC1AB}|Default" GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AdminSystem/Database/ModuleAssessmentService.cs">
     <Files>
       <File FileName="AdminSystem/Utils/CodeFacade.cs" Line="31" Column="10" IsPinned="True" />
-      <File FileName="AdminSystem/Program.cs" Line="62" Column="19" />
-      <File FileName="AdminSystem/Models/Assessment.cs" Line="19" Column="1" />
-      <File FileName="AdminSystem/Models/Grade.cs" Line="1" Column="1" />
-      <File FileName="AdminSystem/Models/AssessmentGrade.cs" Line="1" Column="1" />
-      <File FileName="AdminSystem/Models/ModuleAssessment.cs" Line="11" Column="32" />
-      <File FileName="AdminSystem/Models/Module.cs" Line="17" Column="1" />
-      <File FileName="AdminSystem/Models/ProgrammeModule.cs" Line="20" Column="1" />
-      <File FileName="AdminSystem/Database/DataContext.cs" Line="16" Column="1" />
-      <File FileName="AdminSystem/Database/AdminDatabaseManager.cs" Line="24" Column="1" />
-      <File FileName="AdminSystem/Database/CohortService.cs" Line="5" Column="31" />
-      <File FileName="AdminSystem/Models/Student.cs" Line="6" Column="22" />
-      <File FileName="AdminSystem/Actions/ProgrammeActions.cs" Line="64" Column="13" />
-      <File FileName="AdminSystem/Database/StudentService.cs" Line="34" Column="10" />
-      <File FileName="AdminSystem/Actions/ModuleActions.cs" Line="40" Column="13" />
-      <File FileName="AdminSystem/Models/Cohort.cs" Line="1" Column="1" />
-      <File FileName="AdminSystem/Database/ModuleService.cs" Line="5" Column="2" />
-      <File FileName="AdminSystem/Actions/StudentActions.cs" Line="58" Column="13" />
-      <File FileName="AdminSystem/Actions/ProgramModuleActions.cs" Line="122" Column="14" />
-      <File FileName="AdminSystem/Actions/AssessmentActions.cs" Line="20" Column="30" />
-      <File FileName="AdminSystem/Database/AssessmentService.cs" Line="29" Column="1" />
+      <File FileName="AdminSystem/Program.cs" Line="31" Column="60" />
+      <File FileName="AdminSystem/Models/Assessment.cs" />
+      <File FileName="AdminSystem/Models/ModuleAssessment.cs" />
+      <File FileName="AdminSystem/Models/Module.cs" />
+      <File FileName="AdminSystem/Models/ProgrammeModule.cs" />
+      <File FileName="AdminSystem/Database/DataContext.cs" Line="40" Column="61" />
+      <File FileName="AdminSystem/Database/AdminDatabaseManager.cs" Line="17" Column="44" />
+      <File FileName="AdminSystem/Models/Student.cs" />
+      <File FileName="AdminSystem/Models/Cohort.cs" />
+      <File FileName="AdminSystem/Logic/AssessmentActions.cs" />
+      <File FileName="AdminSystem/Logic/ProgrammeActions.cs" Line="159" Column="6" />
+      <File FileName="AdminSystem/Logic/ProgramModuleActions.cs" />
+      <File FileName="AdminSystem/Logic/ModuleAssessmentAction.cs" Line="73" Column="13" />
+      <File FileName="AdminSystem/Database/StudentService.cs" Line="21" Column="42" />
+      <File FileName="AdminSystem/Logic/StudentActions.cs" Line="54" Column="43" />
+      <File FileName="AdminSystem/Database/ModuleAssessmentService.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="AdminSystem" expanded="True">
-            <Node name="AdminSystem" expanded="True">
-              <Node name="Actions" expanded="True" />
-              <Node name="Database" expanded="True">
-                <Node name="AssessmentService.cs" selected="True" />
+          <Node name="AdminSystem">
+            <Node name="AdminSystem">
+              <Node name="Database">
+                <Node name="ModuleAssessmentService.cs" selected="True" />
               </Node>
-              <Node name="Models" expanded="True" />
+              <Node name="Logic" expanded="True" />
               <Node name="Utils" expanded="True" />
             </Node>
           </Node>
@@ -40,11 +35,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.AdminSystem PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.AdminSystem PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

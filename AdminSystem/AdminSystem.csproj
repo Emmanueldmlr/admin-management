@@ -10,14 +10,16 @@
   <ItemGroup>
     <None Remove="Models\" />
     <None Remove="Database\" />
-    <None Remove="Actions\" />
     <None Remove="Utils\" />
+    <None Remove="Logic\" />
+    <None Remove="UI\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Database\" />
-    <Folder Include="Actions\" />
     <Folder Include="Utils\" />
+    <Folder Include="Logic\" />
+    <Folder Include="UI\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.13" />

@@ -37,6 +37,8 @@ namespace AdminSystem
 
         public DbSet<Assessment> Assessments { get; set; }
 
+        public DbSet<ModuleGrade> ModuleGrades { get; set; }
+
     }
 }
 
