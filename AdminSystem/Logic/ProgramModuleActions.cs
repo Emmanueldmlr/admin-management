@@ -11,115 +11,79 @@ namespace AdminSystem.Logic
 {
 	public class ProgramModuleActions
 	{
+        ProgrammeService programmeServiceInstance = new ProgrammeService();
+        ModuleService moduleServiceInstance = new ModuleService();
 
-        public void AddModuleToProgram()
+        public string AddModuleToProgram(int programCode, int moduleCode, Boolean moduleIsOptional)
         {
-            try
+
+            if (programCode == null || moduleCode == null)
             {
-                Console.WriteLine("Provide the program code: ");
-                int programCode = int.Parse(Console.ReadLine());
+                return("Program and Module codes must be entered.");
+            }
 
-                Console.WriteLine("Provide the Module code: ");
-                int moduleCode = int.Parse(Console.ReadLine());
+            //check if program code and module code exist
+            Programme fetchedProgram = programmeServiceInstance.GetProgramme(programCode);
+            Module fetchedModule = moduleServiceInstance.GetModule(moduleCode);
 
-                Console.WriteLine("Is the module optional for the program, true or false: ");
-                Boolean moduleIsOptional = Boolean.Parse(Console.ReadLine());
+            if (fetchedProgram == null || fetchedModule == null)
+            {
+                return ("Program or Module does not exist");
+            }
 
-                if (programCode == null || moduleCode == null)
-                {
-                    Console.WriteLine("Program and Module codes must be entered.");
-                    return;
-                }
+            ProgramModuleService programmeModuleServiceInstance = new ProgramModuleService();
 
-                //check if program code and module code exist
-                ProgrammeService programmeServiceInstance = new ProgrammeService();
-                ModuleService moduleServiceInstance = new ModuleService();
-                Programme fetchedProgram = programmeServiceInstance.GetProgramme(programCode);
-                Module fetchedModule = moduleServiceInstance.GetModule(moduleCode);
+            IEnumerable<ProgrammeModule> existingProgramModules = programmeModuleServiceInstance.GetProgrammeModulesByProgramId(fetchedProgram.Id);
 
-                if (fetchedProgram == null || fetchedModule == null)
-                {
-                    Console.WriteLine("Program or Module does not exist");
-                    return;
-                }
+            ProgrammeModule programmeModule = new ProgrammeModule
+            {
+                ProgrammeId = fetchedProgram.Id,
+                ModuleId = fetchedModule.Id,
+                IsOptional = moduleIsOptional,
+            };
 
-                ProgramModuleService programmeModuleServiceInstance = new ProgramModuleService();
-
-                IEnumerable<ProgrammeModule> existingProgramModules = programmeModuleServiceInstance.GetProgrammeModulesByProgramId(fetchedProgram.Id);
-
-                ProgrammeModule programmeModule = new ProgrammeModule
-                {
-                    ProgrammeId = fetchedProgram.Id,
-                    ModuleId = fetchedModule.Id,
-                    IsOptional = moduleIsOptional,
-                };
-
-                if (!existingProgramModules.Any())
-                {
-                    programmeModuleServiceInstance.AddProgramModule(programmeModule);
-                    Console.WriteLine("Module successfully added to the program!");
-                    return;
-                }
-                //checks if exceed the maximum no of modules for the program
-                if (existingProgramModules.Count() + 1 > fetchedProgram.NumberOfModules)
-                {
-                    Console.WriteLine("You cannot exceed the maximum no of modules for this program");
-                    return;
-                }
-
-                int optionalModulesCount = existingProgramModules.Count(module => module.IsOptional);
-
-                if (moduleIsOptional && optionalModulesCount + 1 > fetchedProgram.NumberOfOptionalModules)
-                {
-                    Console.WriteLine("You cannot exceed the maximum no of optional modules for this program");
-                    return;
-                }
-
+            if (!existingProgramModules.Any())
+            {
                 programmeModuleServiceInstance.AddProgramModule(programmeModule);
-                Console.WriteLine("Module successfully added to the program!");
+                return ("Module successfully added to the program!");
             }
-            catch (FormatException ex)
+            //checks if exceed the maximum no of modules for the program
+            if (existingProgramModules.Count() + 1 > fetchedProgram.NumberOfModules)
             {
-                Console.WriteLine("Invalid Input. Please enter a valid number.");
+                return("You cannot exceed the maximum no of modules for this program");
             }
 
+            int optionalModulesCount = existingProgramModules.Count(module => module.IsOptional);
+
+            if (moduleIsOptional && optionalModulesCount + 1 > fetchedProgram.NumberOfOptionalModules)
+            {
+                return("You cannot exceed the maximum no of optional modules for this program");
+            }
+
+            programmeModuleServiceInstance.AddProgramModule(programmeModule);
+            return("Module successfully added to the program!");
 
         }
 
-        public void GetProgramModules()
+        public (string Message, IEnumerable<ProgrammeModule> programModules, Programme program) GetProgramModules(int programCode)
         {
-            try
+ 
+            Programme retrievedProgram = programmeServiceInstance.GetProgramme(programCode);
+
+            if (retrievedProgram == null)
             {
-                Console.WriteLine("Provide the program code: ");
-                int programCode = int.Parse(Console.ReadLine());
-
-                ProgrammeService programServiceInstance = new ProgrammeService();
-                Programme retrievedProgram = programServiceInstance.GetProgramme(programCode);
-
-                if (retrievedProgram == null)
-                {
-                    Console.WriteLine("Program does not exist");
-                    return;
-                }
-
-                ProgramModuleService programModuleServiceInstance = new ProgramModuleService();
-                IEnumerable<ProgrammeModule>  programModules = programModuleServiceInstance.GetProgrammeModulesByProgramId(retrievedProgram.Id);
-                if (!programModules.Any())
-                {
-                    Console.WriteLine("No Program modules exist");
-                    return;
-                }
-                foreach (ProgrammeModule element in programModules)
-                {
-                    ModuleService moduleServiceInstance = new ModuleService();
-                    Module retrievedModule = moduleServiceInstance.GetModuleById(element.ModuleId);
-                    Console.WriteLine($"Program Name: {retrievedProgram.Title}, Module Name: {retrievedModule.Title}, is optional: {element.IsOptional}, Programme Code: {retrievedProgram.Code}, Module Code: {retrievedModule.Code}"); // prints out properties 
-                }
+                return ("Program does not exist", null, null);
             }
-            catch (FormatException ex)
+
+            ProgramModuleService programModuleServiceInstance = new ProgramModuleService();
+            IEnumerable<ProgrammeModule>  programModules = programModuleServiceInstance.GetProgrammeModulesByProgramId(retrievedProgram.Id);
+            if (!programModules.Any())
             {
-                Console.WriteLine("Invalid Input. Please enter a valid number.");
+                return ("No Program modules exist", null, null);
+
             }
+
+            return (null, programModules, retrievedProgram);
         }
     }
 }

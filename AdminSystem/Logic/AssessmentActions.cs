@@ -9,6 +9,7 @@ namespace AdminSystem.Logic
 	public class AssessmentActions
 	{
         private IEnumerable<Assessment> assessments;
+
         public string CreateAssessment(string assessmentTitle, string assessmentDetails, int maximumGrade)
         {
             if (assessmentTitle == null || assessmentDetails == null || maximumGrade == null)

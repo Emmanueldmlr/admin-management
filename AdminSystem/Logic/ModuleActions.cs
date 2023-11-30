@@ -120,7 +120,7 @@ namespace AdminSystem.Logic
 
             if (studentTotalScore == -1) return -1;
 
-            studentAssessmentResult = studentTotalScore / studentTotalScore;
+            studentAssessmentResult = studentTotalScore / assessmentsMaxGradeSum;
             double percent = 100.0;
             return studentAssessmentResult * percent;
         }

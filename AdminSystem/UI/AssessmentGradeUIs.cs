@@ -30,6 +30,7 @@ namespace AdminSystem.UI
                 double studentScore = double.Parse(Console.ReadLine());
 
                 string response = assessmentGradeActions.UploadStudentResult(studentId, moduleCode, assessmentCode, studentScore);
+                Console.WriteLine(response);
             }
             catch (FormatException ex)
             {

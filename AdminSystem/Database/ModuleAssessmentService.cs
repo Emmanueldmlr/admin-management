@@ -6,17 +6,16 @@ namespace AdminSystem.Database
 	public class ModuleAssessmentService
 	{
         private List<ModuleAssessment> moduleAssessments;
+        private DataContext context = new DataContext();
 
         public void AddModuleAssessment(ModuleAssessment moduleAssessment)
         {
-            using var context = new DataContext();
             context.ModuleAssessments.Add(moduleAssessment);
             context.SaveChanges();
         }
 
         public IEnumerable<ModuleAssessment> GetModuleAssessments()
         {
-            using var context = new DataContext();
 
             moduleAssessments = context.ModuleAssessments.ToList();
 
@@ -25,7 +24,6 @@ namespace AdminSystem.Database
 
         public ModuleAssessment GetModuleAssessment(int moduleId, int assessmentId)
         {
-            using var context = new DataContext();
 
             ModuleAssessment retrievedRecord = context.ModuleAssessments
                           .FirstOrDefault(p => p.ModuleId == moduleId && p.AssessmentId == assessmentId);
@@ -35,7 +33,6 @@ namespace AdminSystem.Database
 
         public IEnumerable<ModuleAssessment> GetModuleAssessmentsByModuleId(int moduleId)
         {
-            using var context = new DataContext();
 
             moduleAssessments = context.ModuleAssessments
                           .Where(p => p.ModuleId == moduleId).ToList(); ;
@@ -45,7 +42,6 @@ namespace AdminSystem.Database
 
         public ModuleAssessment GetModuleAssessmentsById(int id)
         {
-            using var context = new DataContext();
 
             ModuleAssessment retrievedRecord = context.ModuleAssessments
                           .FirstOrDefault(p => p.Id == id); ;

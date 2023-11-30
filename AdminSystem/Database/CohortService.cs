@@ -7,9 +7,9 @@ namespace AdminSystem.Database
 	public class CohortService
 	{
         private List<Cohort> cohorts;
+        private DataContext context = new DataContext();
         public int AddCohort(Cohort cohort)
         {
-            using var context = new DataContext();
             context.Cohorts.Add(cohort);
             context.SaveChanges();
             return cohort.Id;
@@ -17,7 +17,6 @@ namespace AdminSystem.Database
 
         public Cohort CreateOrFetchCohort(int programId, int year)
         {
-            using var context = new DataContext();
             Cohort retrievedCohort = context.Cohorts.FirstOrDefault(p => p.ProgrammeId == programId);
             if(retrievedCohort == null)
             {
@@ -34,10 +33,7 @@ namespace AdminSystem.Database
 
         public IEnumerable<Cohort> GetCohorts()
         {
-            using var context = new DataContext();
-
             cohorts = context.Cohorts.ToList();
-
             return cohorts;
         }
     }

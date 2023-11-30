@@ -7,17 +7,16 @@ namespace AdminSystem.Database
 	{
         private List<Assessment> assessments;
 
+        private DataContext context = new DataContext();
+
         public void AddAssessment(Assessment assessment)
         {
-            using var context = new DataContext();
             context.Assessments.Add(assessment);
             context.SaveChanges();
         }
 
         public IEnumerable<Assessment> GetAssessments()
         {
-            using var context = new DataContext();
-
             assessments = context.Assessments.ToList();
 
             return assessments;
@@ -25,21 +24,15 @@ namespace AdminSystem.Database
 
         public Assessment GetAssessment(int assessmentCode)
         {
-            using var context = new DataContext();
-
             Assessment retrievedAssessment = context.Assessments
                           .FirstOrDefault(a => a.Code == assessmentCode);
-
             return retrievedAssessment;
         }
 
         public Assessment GetAssessmentById(int assessmentId)
         {
-            using var context = new DataContext();
-
             Assessment retrievedAssessment = context.Assessments
                           .FirstOrDefault(a => a.Id == assessmentId);
-
             return retrievedAssessment;
         }
 

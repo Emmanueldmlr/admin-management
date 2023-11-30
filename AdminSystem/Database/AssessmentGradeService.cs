@@ -7,17 +7,16 @@ namespace AdminSystem.Database
 	{
         private List<AssessmentGrade> assessmentGrades;
 
-        public void AddAssessmentGrade(AssessmentGrade grade)
+        private DataContext context = new DataContext();
+
+    public void AddAssessmentGrade(AssessmentGrade grade)
         {
-            using var context = new DataContext();
             context.AssessmentGrades.Add(grade);
             context.SaveChanges();
         }
 
         public IEnumerable<AssessmentGrade> GetAssessmentGrades()
         {
-            using var context = new DataContext();
-
             assessmentGrades = context.AssessmentGrades.ToList();
 
             return assessmentGrades;
@@ -25,8 +24,6 @@ namespace AdminSystem.Database
 
         public AssessmentGrade GetAssessmentGradeById(int assessmentId)
         {
-            using var context = new DataContext();
-
             AssessmentGrade retrievedGrade = context.AssessmentGrades
                           .FirstOrDefault(a => a.Id == assessmentId);
 
@@ -35,8 +32,6 @@ namespace AdminSystem.Database
 
         public AssessmentGrade GetStudentAssessmentGrade(int moduleAssessmentId, int studentId)
         {
-            using var context = new DataContext();
-
             AssessmentGrade retrievedGrades = context.AssessmentGrades
                           .FirstOrDefault(a => (a.ModuleAssessmentId == moduleAssessmentId) && (a.StudentId == studentId));
 
@@ -45,11 +40,8 @@ namespace AdminSystem.Database
 
         public IEnumerable<AssessmentGrade> GetStudentAssessmentGrade(int studentId)
         {
-            using var context = new DataContext();
-
             assessmentGrades = context.AssessmentGrades
                           .Where(a => (a.StudentId == studentId)).ToList();
-
             return assessmentGrades;
         }
     }

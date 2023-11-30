@@ -16,5 +16,7 @@ namespace AdminSystem.Models
 
         public int Code { get; set; }
     }
+
+
 }
 

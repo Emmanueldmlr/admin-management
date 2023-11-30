@@ -41,6 +41,7 @@ namespace AdminSystem.UI
                 int studentId = int.Parse(Console.ReadLine());
 
                 string response = moduleActionsInstance.CalculateStudentModuleResult(moduleCode, programCode, studentId);
+                Console.WriteLine(response);
             } 
             catch (FormatException ex)
             {

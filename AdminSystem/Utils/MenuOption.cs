@@ -10,7 +10,7 @@ namespace AdminSystem.Utils
         {
             "Hi, this is an Admin system made by Bakare Damilare E. for Object Oriented Programming using C#",
             "Use numbers to define the actions you want to perform",
-            "Press 1 to create a new Programme: ",
+            "Press 1 to Create a new Programme: ",
             "Press 2 to View All Programmes: ",
             "Press 3 to Create a Student: ",
             "Press 4 to View All Students: ",

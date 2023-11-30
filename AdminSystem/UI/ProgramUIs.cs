@@ -61,6 +61,7 @@ namespace AdminSystem.UI
                 int studentCode = int.Parse(Console.ReadLine());
 
                 string response = programmeActionsInstance.CalculateStudentProgramResult(programCode, studentCode);
+                Console.WriteLine(response);
             }
             catch (FormatException ex)
             {

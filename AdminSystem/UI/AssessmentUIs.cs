@@ -23,6 +23,7 @@ namespace AdminSystem.UI
                 int maximumGrade = int.Parse(Console.ReadLine());
 
                 string response = assessmentActionsInstance.CreateAssessment(assessmentTitle, assessmentDetails, maximumGrade);
+                Console.WriteLine(response);
 
             }
             catch (FormatException ex)
